@@ -34,7 +34,7 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
 
     return (
       <View
-        className={`flex-col items-start relative overflow-visible pl-3 pt-20 mr-4 ${
+        className={`flex-col items-start relative overflow-visible pt-20 mr-4 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
         <Image
@@ -72,7 +72,11 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
   return (
     <FlatList
       data={TEMP_PLANETS}
-      contentContainerStyle={{ alignItems: 'flex-start', paddingHorizontal: -16, flexGrow: 0 }}
+      style={{ marginRight: -16 }}
+      contentContainerStyle={{
+        alignItems: 'flex-start',
+        flexGrow: 0,
+      }}
       renderItem={renderPlanetItem}
       horizontal
     />
