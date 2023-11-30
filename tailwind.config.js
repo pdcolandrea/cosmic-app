@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         dark: '#0F0E0F',
+        earth: '#B6F3FF',
       },
     },
   },
