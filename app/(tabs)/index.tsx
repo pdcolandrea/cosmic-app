@@ -76,7 +76,7 @@ export default function TabOneScreen() {
         <FlatList
           data={TEMP_LABELS}
           renderItem={renderTabLabel}
-          style={{ flexGrow: 0, marginBottom: 65 }}
+          style={{ flexGrow: 0, marginBottom: 24 }}
           horizontal
         />
         <PlanetSlider />
