@@ -13,6 +13,7 @@ import {
 
 import { PlanetSlider } from '../../components/planet-slider';
 import StarBackground from '../../components/star-background';
+import ArticleSlider from '../../components/article-slider';
 
 const TEMP_LABELS = [
   {
@@ -64,7 +65,7 @@ export default function TabOneScreen() {
     <StarBackground>
       <View className={styles.container}>
         <StatusBar backgroundColor="red" />
-        <View className="mt-12 mb-4 h-14 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
+        <View className="mt-12 mb-4 h-12 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
           <Ionicons name="search-sharp" color="white" size={22} style={{ marginTop: 5 }} />
           <TextInput
             className="w-full text-base text-white ml-2"
@@ -80,6 +81,7 @@ export default function TabOneScreen() {
           horizontal
         />
         <PlanetSlider />
+        <ArticleSlider />
       </View>
     </StarBackground>
   );
