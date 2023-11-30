@@ -1,19 +1,21 @@
-import { Text, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 
 import EditScreenInfo from '../../components/edit-screen-info';
+import { StatusBar } from 'expo-status-bar';
 
 export default function TabOneScreen() {
   return (
     <View className={styles.container}>
-      <Text className={styles.title}>Tab One</Text>
-      <View className={styles.separator} />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <StatusBar backgroundColor="red" />
+      <TextInput
+        className="mt-20 h-14 rounded-md w-[90%] mx-auto bg-[#161616]"
+        placeholder="Search for planets and stars"
+      />
     </View>
   );
 }
 
 const styles = {
-  container: `items-center flex-1 justify-center`,
-  separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
-  title: `text-xl font-bold`,
+  container: `flex-1 bg-dark`,
+  title: `text-xl font-bold text-white`,
 };

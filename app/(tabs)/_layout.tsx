@@ -13,12 +13,17 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        headerShown: false,
+        tabBarInactiveTintColor: '#696969',
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: '#171717',
+        },
+        tabBarActiveTintColor: 'white',
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -39,7 +44,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
