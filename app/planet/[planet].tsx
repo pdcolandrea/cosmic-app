@@ -70,7 +70,7 @@ export default function PlanetScreen() {
           scrollEventThrottle={16}
           style={{ marginTop: 10 }}>
           <Animated.Image
-            source={require('../../assets/planets/Earth.png')}
+            source={planet?.image}
             style={[styles.image, imageAnimatedStyle]}
             resizeMode="cover"
           />
@@ -80,7 +80,7 @@ export default function PlanetScreen() {
                 <Text style={{ fontFamily: 'Rubik_700Bold' }} className="text-4xl text-white">
                   {planet?.name}
                 </Text>
-                <Text className="text-xl text-white font-sans">The Jewel of the Solar System</Text>
+                <Text className="text-xl text-white font-sans">{planet?.subtitle}</Text>
               </View>
               <View
                 style={{
@@ -97,15 +97,7 @@ export default function PlanetScreen() {
                 <HeartIcon />
               </View>
             </View>
-            <Text className="text-lg text-white my-4 font-sans">
-              Saturn is often referred to as the "jewel of the solar system" due to its stunning
-              rings that are visible from Earth. With a diameter of 116,460 km, Saturn is the second
-              largest planet in our solar system and is known for its unique and beautiful ring
-              system, which is composed of ice particles, dust, and small rocks. The rings are
-              believed to be relatively young, having formed less than 100 million years ago from
-              the debris of a destroyed moon or comet. Saturn's atmosphere is primarily composed of
-              hydrogen and helium, with trace amounts of other gases.{' '}
-            </Text>
+            <Text className="text-lg text-white my-4 font-sans">{planet?.information}</Text>
             <Text className="text-[#787878] font-sans">By Daisy Stephenson | 02 May 2023</Text>
           </View>
         </Animated.ScrollView>
