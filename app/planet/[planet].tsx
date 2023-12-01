@@ -11,7 +11,7 @@ import Animated, {
 
 import HeartIcon from '../../components/icons/heart';
 import StarBackground from '../../components/star-background';
-import { PlanetList } from '../data/planets';
+import { PlanetList } from '../../lib/data/planets';
 
 const IMG_HEIGHT = 300;
 const { width } = Dimensions.get('window');

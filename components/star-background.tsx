@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, memo } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -10,9 +10,9 @@ import Animated, {
 } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
-const NUM_STARS = 25;
+const NUM_STARS = 500;
 
-const Star = () => {
+const Star = memo(() => {
   const posX = useSharedValue(Math.random() * width);
   const posY = useSharedValue(Math.random() * height);
 
@@ -65,7 +65,7 @@ const Star = () => {
       style={[styles.star, animatedStyles, { width: size, height: size, borderRadius: size / 2 }]}
     />
   );
-};
+});
 
 interface StarBackgroundProps {
   children: React.ReactNode;
@@ -73,6 +73,7 @@ interface StarBackgroundProps {
 
 export default function StarBackground(props: StarBackgroundProps) {
   const { children } = props;
+
   return (
     <View style={styles.container}>
       {Array.from({ length: NUM_STARS }).map((_, index) => (
