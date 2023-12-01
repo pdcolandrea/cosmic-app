@@ -19,6 +19,7 @@ export const PlanetList = [
   },
   {
     title: 'Venus',
+    name: 'Venus',
     image: require('../../assets/planets/Venus2.png'),
     description:
       "Venus is the second planet from the sun and is often referred to as the Earth's sister planet.",
@@ -42,6 +43,33 @@ export const PlanetList = [
       'Jupiter is the fifth planet from the sun and the largest planet in the solar system. It has a',
     bgColor: '#e5a161',
     buttonColor: '#CE7422',
+  },
+  {
+    title: 'Saturn',
+    name: 'Saturn',
+    image: require('../../assets/planets/Saturn.png'),
+    description:
+      'Saturn is the sixth planet from the sun and the second largest planet in the solar system.',
+    bgColor: '#bbd39c',
+    buttonColor: '#4e6a2a',
+  },
+  {
+    title: 'Uranus',
+    name: 'Uranus',
+    image: require('../../assets/planets/Uranus.png'),
+    description:
+      'Uranus is the seventh planet from the sun and the third largest planet in the solar system.',
+    bgColor: '#c8b7f6',
+    buttonColor: '#331E6F',
+  },
+  {
+    title: 'Neptune',
+    name: 'Neptune',
+    image: require('../../assets/planets/Neptune.png'),
+    description:
+      'Neptune is the eighth planet from the sun and the fourth largest planet in the solar system.',
+    bgColor: '#80eeff',
+    buttonColor: '#2c7af4',
   },
 ] as const;
 

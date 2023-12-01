@@ -8,6 +8,7 @@ import {
   Pressable,
   Image,
   TouchableOpacity,
+  ImageStyle,
 } from 'react-native';
 import { PlanetList, PlanetType } from '../app/data/planets';
 
@@ -21,27 +22,50 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
 
   const renderPlanetItem: ListRenderItem<PlanetType> = ({ item }) => {
     const DEBUG_LIST = false;
+    const imageStyle = (): ImageStyle => {
+      if (item.title === 'Saturn') {
+        return {
+          marginLeft: 20,
+          transform: [{ scale: 0.9 }],
+        };
+      } else if (item.title === 'Uranus') {
+        return {
+          marginBottom: 20,
+          marginLeft: 20,
+          transform: [
+            { scale: 0.85 },
+            {
+              rotate: '25deg',
+            },
+          ],
+        };
+      }
+      return {};
+    };
 
     return (
       <View
-        className={`flex-col items-start relative overflow-visible pt-20 mr-4 ${
+        className={`flex-col items-start relative overflow-visible pt-20 mr-6 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
         <Link href={{ pathname: '/planet/[planet]', params: { planet: item.title } }}>
           <View>
             <Image
               source={item.image}
-              style={{
-                width: 280,
-                height: 280,
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 3,
+              style={[
+                imageStyle(),
+                {
+                  width: 280,
+                  height: 280,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 3,
+                  },
+                  shadowOpacity: 0.29,
+                  shadowRadius: 4.65,
                 },
-                shadowOpacity: 0.29,
-                shadowRadius: 4.65,
-              }}
+              ]}
               className="absolute -top-28 -left-[66px] z-10"
             />
             <View
