@@ -1,69 +1,24 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import {
-  FlatList,
-  LayoutAnimation,
-  ListRenderItem,
-  Pressable,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { LayoutAnimation, TextInput, View } from 'react-native';
 
 import ArticleSlider from '../../components/article-slider';
-import { PlanetSlider } from '../../components/planet-slider';
+import CategorySlider, { FilterType } from '../../components/category-slider';
+import PlanetSlider from '../../components/planet-slider';
 import StarBackground from '../../components/star-background';
-
-const TEMP_LABELS = [
-  {
-    title: 'All',
-    filter: 'all',
-  },
-  {
-    title: 'Planets',
-    filter: 'planets',
-  },
-  {
-    title: 'Stars',
-    filter: 'stars',
-  },
-  {
-    title: 'Galaxies',
-    filter: 'galaxies',
-  },
-] as const;
-
-type LabelsType = (typeof TEMP_LABELS)[number];
-type FilterType = LabelsType['filter'];
 
 export default function TabOneScreen() {
   const [selectedTab, setSelectedTab] = useState<FilterType>('all');
 
-  const renderTabLabel: ListRenderItem<LabelsType> = ({ item }) => {
-    const isSelected = item.filter === selectedTab;
-
-    const onTabPressed = () => {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-      setSelectedTab(item.filter);
-    };
-
-    return (
-      <Pressable
-        onPress={onTabPressed}
-        className={`border-[#565656] h-8 px-4 mr-3 border items-center justify-center rounded-lg ${
-          isSelected && 'border-0 bg-white text-black'
-        }`}>
-        <Text className="text-[#565656] font-sans" style={{}}>
-          {item.title}
-        </Text>
-      </Pressable>
-    );
+  const onTabPressed = (filter: FilterType) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    setSelectedTab(filter);
   };
 
   return (
     <StarBackground>
-      <View className={styles.container}>
+      <View className="flex-1 p-4">
         <StatusBar backgroundColor="red" />
         <View className="mt-12 mb-4 h-12 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
           <Ionicons name="search-sharp" color="white" size={22} style={{ marginTop: 5 }} />
@@ -74,19 +29,10 @@ export default function TabOneScreen() {
           />
         </View>
 
-        <FlatList
-          data={TEMP_LABELS}
-          renderItem={renderTabLabel}
-          style={{ flexGrow: 0, marginBottom: 24 }}
-          horizontal
-        />
+        <CategorySlider selectedTab={selectedTab} onChange={onTabPressed} />
         <PlanetSlider />
         <ArticleSlider />
       </View>
     </StarBackground>
   );
 }
-
-const styles = {
-  container: `flex-1 p-4`,
-};

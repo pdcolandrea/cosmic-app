@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Link, useNavigation } from 'expo-router';
+import { Link } from 'expo-router';
 import {
   FlatList,
   type ListRenderItem,
@@ -9,14 +9,15 @@ import {
   Image,
   ImageStyle,
 } from 'react-native';
-import { PlanetList, PlanetType } from '../app/data/planets';
 import Animated, { FadeIn } from 'react-native-reanimated';
+
+import { PlanetList, PlanetType } from '../app/data/planets';
 
 interface PlanetSliderProps {
   searchFilter?: string;
 }
 
-export const PlanetSlider = (props: PlanetSliderProps) => {
+export default function PlanetSlider(props: PlanetSliderProps) {
   const { searchFilter } = props;
 
   const renderPlanetItem: ListRenderItem<PlanetType> = ({ item, index }) => {
@@ -103,4 +104,4 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
       horizontal
     />
   );
-};
+}

@@ -17,10 +17,10 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { View } from 'react-native';
 
-// export const unstable_settings = {
-//   // Ensure that reloading on `/modal` keeps a back button present.
-//   initialRouteName: '(tabs)',
-// };
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: '(tabs)',
+};
 
 function RootLayout() {
   const hasOnboarded = true;
