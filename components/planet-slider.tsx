@@ -9,31 +9,11 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { PlanetList, PlanetType } from '../app/data/planets';
 
 interface PlanetSliderProps {
   searchFilter?: string;
 }
-
-const TEMP_PLANETS = [
-  {
-    title: 'Mother Earth',
-    image: require('../assets/planets/Earth.png'),
-    description:
-      'Earth is the third planet from the sun and the only known planet to support life. It has a diameter of 12,742 km.',
-    bgColor: '#B6F3FF',
-    buttonColor: '#1D99B5',
-  },
-  {
-    title: 'Venus',
-    image: require('../assets/planets/Venus.png'),
-    description:
-      "Venus is the second planet from the sun and is often referred to as the Earth's sister planet.",
-    bgColor: '#F6E3C4',
-    buttonColor: '#D6711E',
-  },
-] as const;
-
-type PlanetType = (typeof TEMP_PLANETS)[number];
 
 export const PlanetSlider = (props: PlanetSliderProps) => {
   const navigation = useNavigation();
@@ -52,8 +32,8 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
             <Image
               source={item.image}
               style={{
-                width: 190,
-                height: 190,
+                width: 280,
+                height: 280,
                 shadowColor: '#000',
                 shadowOffset: {
                   width: 0,
@@ -62,7 +42,7 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
               }}
-              className="absolute -top-20 -left-5 z-10"
+              className="absolute -top-28 -left-[66px] z-10"
             />
             <View
               className="w-48 h-64 rounded-xl px-3 justify-end"
@@ -85,7 +65,7 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
 
   return (
     <FlatList
-      data={TEMP_PLANETS}
+      data={PlanetList}
       style={{ marginRight: -16 }}
       contentContainerStyle={{
         alignItems: 'flex-start',

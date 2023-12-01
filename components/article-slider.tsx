@@ -1,4 +1,4 @@
-import { FlatList, ListRenderItem, Text, View } from 'react-native';
+import { FlatList, Image, ListRenderItem, Text, View } from 'react-native';
 
 const TEMP_ARTICLES = [
   {
@@ -14,7 +14,12 @@ export default function ArticleSlider() {
   const renderArticleItem: ListRenderItem<(typeof TEMP_ARTICLES)[number]> = ({ item }) => {
     return (
       <View className="flex-row bg-[#161616] h-36 w-[350px] rounded-xl">
-        <View className="w-28 bg-[#B098E4] rounded-l-xl" />
+        <View className="w-28 bg-[#B098E4] rounded-l-xl items-center justify-center">
+          <Image
+            source={require('../assets/temp-article-img.png')}
+            style={{ width: 105, height: 105 }}
+          />
+        </View>
         <View className="flex-col flex-1 p-3">
           <Text className="text-lg text-white">{item.title}</Text>
           <Text className="text-[#BBBBBB] flex-wrap  text-xs" numberOfLines={4}>
