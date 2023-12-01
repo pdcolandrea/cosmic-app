@@ -17,7 +17,6 @@ interface PlanetSliderProps {
 }
 
 export const PlanetSlider = (props: PlanetSliderProps) => {
-  const navigation = useNavigation();
   const { searchFilter } = props;
 
   const renderPlanetItem: ListRenderItem<PlanetType> = ({ item }) => {
@@ -48,7 +47,7 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
         className={`flex-col items-start relative overflow-visible pt-20 mr-6 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
-        <Link href={{ pathname: '/planet/[planet]', params: { planet: item.title } }}>
+        <Link href={{ pathname: '/planet/[planet]', params: { planet: item.name } }}>
           <View>
             <Image
               source={item.image}

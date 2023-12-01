@@ -14,6 +14,9 @@ export const PlanetList = [
     image: require('../../assets/planets/Mercury.png'),
     description:
       'Mercury is the closest planet to the sun. It has a diameter of 4,879 km. It seems very hot and dry.',
+    subtitle: 'The Swift Messenger of the Sky',
+    information:
+      "Mercury, named after the Roman messenger of the gods, is the smallest planet in our solar system and the closest to the Sun. It whips around its orbit faster than any other planet, leading to its nickname. Despite its proximity to the Sun, temperatures can swing dramatically, from scorching hot to freezing cold, due to its lack of atmosphere. The surface is cratered and similar in appearance to Earth's moon, offering a stark and barren landscape.",
     bgColor: '#E6D7FF',
     buttonColor: '#795dbb',
   },

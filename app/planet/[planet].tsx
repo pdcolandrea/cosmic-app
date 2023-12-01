@@ -11,6 +11,7 @@ import Animated, {
 
 import HeartIcon from '../../components/icons/heart';
 import StarBackground from '../../components/star-background';
+import { PlanetList } from '../data/planets';
 
 const IMG_HEIGHT = 300;
 const { width } = Dimensions.get('window');
@@ -18,15 +19,12 @@ const { width } = Dimensions.get('window');
 export default function PlanetScreen() {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const { setOptions, goBack } = useNavigation();
-  const { planet } = useLocalSearchParams<{
+  const { planet: planetName } = useLocalSearchParams<{
     planet: string;
   }>();
 
-  useLayoutEffect(() => {
-    setOptions({
-      title: planet,
-    });
-  }, []);
+  if (!planetName) throw new Error("Planet screen requires 'planet' param");
+  const planet = PlanetList.find((p) => p.name === planetName);
 
   useLayoutEffect(() => {
     setOptions({
@@ -40,7 +38,6 @@ export default function PlanetScreen() {
   }, []);
 
   const scrollOffset = useScrollViewOffset(scrollRef);
-
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -81,7 +78,7 @@ export default function PlanetScreen() {
             <View className="flex-row items-center justify-between">
               <View>
                 <Text style={{ fontFamily: 'Rubik_700Bold' }} className="text-4xl text-white">
-                  Saturn
+                  {planet?.name}
                 </Text>
                 <Text className="text-xl text-white font-sans">The Jewel of the Solar System</Text>
               </View>
