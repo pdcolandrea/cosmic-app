@@ -1,6 +1,7 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useLocalSearchParams } from 'expo-router';
-import { useLayoutEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, Pressable } from 'react-native';
+import { useLayoutEffect } from 'react';
+import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
 import Animated, {
   interpolate,
   useAnimatedRef,
@@ -8,9 +9,8 @@ import Animated, {
   useScrollViewOffset,
 } from 'react-native-reanimated';
 
-import StarBackground from '../../components/star-background';
-import { Ionicons } from '@expo/vector-icons';
 import HeartIcon from '../../components/icons/heart';
+import StarBackground from '../../components/star-background';
 
 const IMG_HEIGHT = 300;
 const { width } = Dimensions.get('window');

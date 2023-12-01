@@ -11,9 +11,9 @@ import {
   View,
 } from 'react-native';
 
+import ArticleSlider from '../../components/article-slider';
 import { PlanetSlider } from '../../components/planet-slider';
 import StarBackground from '../../components/star-background';
-import ArticleSlider from '../../components/article-slider';
 
 const TEMP_LABELS = [
   {
@@ -54,7 +54,7 @@ export default function TabOneScreen() {
         className={`border-[#565656] h-8 px-4 mr-3 border items-center justify-center rounded-lg ${
           isSelected && 'border-0 bg-white text-black'
         }`}>
-        <Text className="text-[#565656]" style={{}}>
+        <Text className="text-[#565656] font-sans" style={{}}>
           {item.title}
         </Text>
       </Pressable>
@@ -68,7 +68,7 @@ export default function TabOneScreen() {
         <View className="mt-12 mb-4 h-12 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
           <Ionicons name="search-sharp" color="white" size={22} style={{ marginTop: 5 }} />
           <TextInput
-            className="w-full text-base text-white ml-2"
+            className="w-full text-base text-white ml-2 font-sans"
             placeholder="Search for planets and stars"
             placeholderTextColor="white"
           />
@@ -89,5 +89,4 @@ export default function TabOneScreen() {
 
 const styles = {
   container: `flex-1 p-4`,
-  title: `text-xl font-bold text-white`,
 };
