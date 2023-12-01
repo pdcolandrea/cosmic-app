@@ -71,9 +71,13 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
             <View
               className="w-48 h-64 rounded-xl px-3 justify-end"
               style={{ backgroundColor: item.bgColor }}>
-              <Text className="font-semibold text-lg mb-1">{item.title}</Text>
+              <Text style={{ fontFamily: 'Rubik_700Bold' }} className="font-semibold text-lg mb-1">
+                {item.title}
+              </Text>
 
-              <Text className="text-[#353535] text-xs">{item.description}</Text>
+              <Text style={{}} className="text-[#353535] font-sans text-xs">
+                {item.description}
+              </Text>
 
               <Pressable
                 style={{ backgroundColor: item.buttonColor }}

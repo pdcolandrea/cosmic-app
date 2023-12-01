@@ -80,8 +80,10 @@ export default function PlanetScreen() {
           <View className="p-6 h-full bg-dark">
             <View className="flex-row items-center justify-between">
               <View>
-                <Text className="text-4xl text-white font-semibold">Saturn</Text>
-                <Text className="text-xl text-white">The Jewel of the Solar System</Text>
+                <Text style={{ fontFamily: 'Rubik_700Bold' }} className="text-4xl text-white">
+                  Saturn
+                </Text>
+                <Text className="text-xl text-white font-sans">The Jewel of the Solar System</Text>
               </View>
               <View
                 style={{
@@ -98,7 +100,7 @@ export default function PlanetScreen() {
                 <HeartIcon />
               </View>
             </View>
-            <Text className="text-lg text-white my-4">
+            <Text className="text-lg text-white my-4 font-sans">
               Saturn is often referred to as the "jewel of the solar system" due to its stunning
               rings that are visible from Earth. With a diameter of 116,460 km, Saturn is the second
               largest planet in our solar system and is known for its unique and beautiful ring
@@ -107,7 +109,7 @@ export default function PlanetScreen() {
               the debris of a destroyed moon or comet. Saturn's atmosphere is primarily composed of
               hydrogen and helium, with trace amounts of other gases.{' '}
             </Text>
-            <Text className="text-[#787878]">By Daisy Stephenson | 02 May 2023</Text>
+            <Text className="text-[#787878] font-sans">By Daisy Stephenson | 02 May 2023</Text>
           </View>
         </Animated.ScrollView>
       </View>

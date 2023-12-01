@@ -54,7 +54,7 @@ export default function TabOneScreen() {
         className={`border-[#565656] h-8 px-4 mr-3 border items-center justify-center rounded-lg ${
           isSelected && 'border-0 bg-white text-black'
         }`}>
-        <Text className="text-[#565656]" style={{ fontFamily: 'Inter-Black' }}>
+        <Text className="text-[#565656]" style={{}}>
           {item.title}
         </Text>
       </Pressable>
