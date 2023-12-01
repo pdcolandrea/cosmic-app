@@ -1,5 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, type ListRenderItem, View, Text, Pressable, Image } from 'react-native';
+import { Link, useNavigation } from 'expo-router';
+import {
+  FlatList,
+  type ListRenderItem,
+  View,
+  Text,
+  Pressable,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
 interface PlanetSliderProps {
   searchFilter?: string;
@@ -27,6 +36,7 @@ const TEMP_PLANETS = [
 type PlanetType = (typeof TEMP_PLANETS)[number];
 
 export const PlanetSlider = (props: PlanetSliderProps) => {
+  const navigation = useNavigation();
   const { searchFilter } = props;
 
   const renderPlanetItem: ListRenderItem<PlanetType> = ({ item }) => {
@@ -37,34 +47,38 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
         className={`flex-col items-start relative overflow-visible pt-20 mr-4 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
-        <Image
-          source={item.image}
-          style={{
-            width: 190,
-            height: 190,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 3,
-            },
-            shadowOpacity: 0.29,
-            shadowRadius: 4.65,
-          }}
-          className="absolute -top-3 -left-4 z-10"
-        />
-        <View
-          className="w-48 h-64 rounded-xl px-3 justify-end"
-          style={{ backgroundColor: item.bgColor }}>
-          <Text className="font-semibold text-lg mb-1">{item.title}</Text>
+        <Link href={{ pathname: '/planet/[planet]', params: { planet: item.title } }}>
+          <View>
+            <Image
+              source={item.image}
+              style={{
+                width: 190,
+                height: 190,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.29,
+                shadowRadius: 4.65,
+              }}
+              className="absolute -top-20 -left-5 z-10"
+            />
+            <View
+              className="w-48 h-64 rounded-xl px-3 justify-end"
+              style={{ backgroundColor: item.bgColor }}>
+              <Text className="font-semibold text-lg mb-1">{item.title}</Text>
 
-          <Text className="text-[#353535] text-xs">{item.description}</Text>
+              <Text className="text-[#353535] text-xs">{item.description}</Text>
 
-          <Pressable
-            style={{ backgroundColor: item.buttonColor }}
-            className="h-12 w-12 border border-white rounded-full mx-auto items-center justify-center translate-y-5">
-            <Ionicons name="arrow-forward" color="white" size={30} />
-          </Pressable>
-        </View>
+              <Pressable
+                style={{ backgroundColor: item.buttonColor }}
+                className="h-12 w-12 border border-white rounded-full mx-auto items-center justify-center translate-y-5">
+                <Ionicons name="arrow-forward" color="white" size={30} />
+              </Pressable>
+            </View>
+          </View>
+        </Link>
       </View>
     );
   };

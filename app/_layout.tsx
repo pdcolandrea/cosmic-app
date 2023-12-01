@@ -13,6 +13,7 @@ function RootLayout() {
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      <Stack.Screen name="planet" options={{ headerShown: false }} />
     </Stack>
   );
 }
