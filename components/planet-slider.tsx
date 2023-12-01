@@ -7,10 +7,10 @@ import {
   Text,
   Pressable,
   Image,
-  TouchableOpacity,
   ImageStyle,
 } from 'react-native';
 import { PlanetList, PlanetType } from '../app/data/planets';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 interface PlanetSliderProps {
   searchFilter?: string;
@@ -19,7 +19,7 @@ interface PlanetSliderProps {
 export const PlanetSlider = (props: PlanetSliderProps) => {
   const { searchFilter } = props;
 
-  const renderPlanetItem: ListRenderItem<PlanetType> = ({ item }) => {
+  const renderPlanetItem: ListRenderItem<PlanetType> = ({ item, index }) => {
     const DEBUG_LIST = false;
     const imageStyle = (): ImageStyle => {
       if (item.title === 'Saturn') {
@@ -43,7 +43,8 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
     };
 
     return (
-      <View
+      <Animated.View
+        entering={FadeIn.duration(500).delay(250 * index)}
         className={`flex-col items-start relative overflow-visible pt-20 mr-6 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
@@ -86,7 +87,7 @@ export const PlanetSlider = (props: PlanetSliderProps) => {
             </View>
           </View>
         </Link>
-      </View>
+      </Animated.View>
     );
   };
 
