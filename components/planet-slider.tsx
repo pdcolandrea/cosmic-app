@@ -10,8 +10,7 @@ import {
   ImageStyle,
 } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-
-import { PlanetList, PlanetType } from '../app/data/planets';
+import { PlanetList, PlanetType } from '../lib/data/planets';
 
 interface PlanetSliderProps {
   searchFilter?: string;

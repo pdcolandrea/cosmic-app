@@ -9,22 +9,26 @@ import Animated, {
   useScrollViewOffset,
 } from 'react-native-reanimated';
 
-import HeartIcon from '../../components/icons/heart';
+import { AnimatedHeartToggle } from '../../components/icons/animated-toggle';
 import StarBackground from '../../components/star-background';
+import { useLikeStore } from '../../hooks/use-likes';
 import { PlanetList } from '../../lib/data/planets';
 
 const IMG_HEIGHT = 300;
 const { width } = Dimensions.get('window');
 
 export default function PlanetScreen() {
+  const { toggleLike, likes } = useLikeStore();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const { setOptions, goBack } = useNavigation();
   const { planet: planetName } = useLocalSearchParams<{
     planet: string;
   }>();
 
-  if (!planetName) throw new Error("Planet screen requires 'planet' param");
   const planet = PlanetList.find((p) => p.name === planetName);
+  if (!planetName || !planet) throw new Error("Planet screen requires 'planet' param");
+
+  const isLikedPlanet = likes.includes(planet.name);
 
   useLayoutEffect(() => {
     setOptions({
@@ -61,6 +65,10 @@ export default function PlanetScreen() {
     };
   }, []);
 
+  const onLikePressed = () => {
+    toggleLike(planet.name);
+  };
+
   return (
     <StarBackground>
       <View style={{ flex: 1 }}>
@@ -80,7 +88,7 @@ export default function PlanetScreen() {
                 <Text style={{ fontFamily: 'Rubik_700Bold' }} className="text-4xl text-white">
                   {planet?.name}
                 </Text>
-                <Text className="text-xl text-white font-sans">{planet?.subtitle}</Text>
+                <Text className="text-xl text-white font-sans">{planet.subtitle}</Text>
               </View>
               <View
                 style={{
@@ -94,10 +102,12 @@ export default function PlanetScreen() {
 
                   elevation: 14,
                 }}>
-                <HeartIcon />
+                <Pressable onPress={onLikePressed} style={{ marginRight: 12 }}>
+                  <AnimatedHeartToggle liked={isLikedPlanet} onPress={onLikePressed} />
+                </Pressable>
               </View>
             </View>
-            <Text className="text-lg text-white my-4 font-sans">{planet?.information}</Text>
+            <Text className="text-lg text-white my-4 font-sans">{planet.information}</Text>
             <Text className="text-[#787878] font-sans">By Daisy Stephenson | 02 May 2023</Text>
           </View>
         </Animated.ScrollView>

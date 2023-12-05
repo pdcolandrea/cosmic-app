@@ -5,6 +5,7 @@ interface LikeStore {
   likes: PlanetType['name'][];
   addLike: (name: PlanetType['name']) => void;
   removeAllLikes: () => void;
+  toggleLike: (name: PlanetType['name']) => void;
 }
 
 export const useLikeStore = create<LikeStore>((set) => ({
@@ -19,4 +20,11 @@ export const useLikeStore = create<LikeStore>((set) => ({
       likes: state.likes.filter((like) => like !== name),
     })),
   removeAllLikes: () => set({ likes: [] }),
+  toggleLike: (name: PlanetType['name']) =>
+    set((state) => ({
+      ...state,
+      likes: state.likes.includes(name)
+        ? state.likes.filter((like) => like !== name)
+        : [...state.likes, name],
+    })),
 }));
