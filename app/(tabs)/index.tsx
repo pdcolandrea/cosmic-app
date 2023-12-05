@@ -7,6 +7,7 @@ import ArticleSlider from '../../components/article-slider';
 import CategorySlider, { FilterType } from '../../components/category-slider';
 import PlanetSlider from '../../components/planet-slider';
 import StarBackground from '../../components/star-background';
+import StarBackgroundSkia from '../../components/star-skia-background';
 
 export default function TabOneScreen() {
   const [selectedTab, setSelectedTab] = useState<FilterType>('all');
@@ -17,7 +18,7 @@ export default function TabOneScreen() {
   };
 
   return (
-    <StarBackground>
+    <StarBackgroundSkia>
       <View className="flex-1 p-4">
         <StatusBar backgroundColor="red" />
         <View className="mt-12 mb-4 h-12 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
@@ -33,6 +34,6 @@ export default function TabOneScreen() {
         <PlanetSlider />
         <ArticleSlider />
       </View>
-    </StarBackground>
+    </StarBackgroundSkia>
   );
 }

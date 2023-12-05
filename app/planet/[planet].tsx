@@ -9,7 +9,7 @@ import Animated, {
   useScrollViewOffset,
 } from 'react-native-reanimated';
 
-import { AnimatedHeartToggle } from '../../components/icons/animated-toggle';
+import { AnimatedHeartToggle } from '../../components/icons/animated-heart';
 import StarBackground from '../../components/star-background';
 import { useLikeStore } from '../../hooks/use-likes';
 import { PlanetList } from '../../lib/data/planets';
@@ -19,11 +19,12 @@ const { width } = Dimensions.get('window');
 
 export default function PlanetScreen() {
   const { toggleLike, likes } = useLikeStore();
-  const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const { setOptions, goBack } = useNavigation();
   const { planet: planetName } = useLocalSearchParams<{
     planet: string;
   }>();
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
+  const scrollOffset = useScrollViewOffset(scrollRef);
 
   const planet = PlanetList.find((p) => p.name === planetName);
   if (!planetName || !planet) throw new Error("Planet screen requires 'planet' param");
@@ -41,7 +42,6 @@ export default function PlanetScreen() {
     });
   }, []);
 
-  const scrollOffset = useScrollViewOffset(scrollRef);
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -86,7 +86,7 @@ export default function PlanetScreen() {
             <View className="flex-row items-center justify-between">
               <View>
                 <Text style={{ fontFamily: 'Rubik_700Bold' }} className="text-4xl text-white">
-                  {planet?.name}
+                  {planet.name}
                 </Text>
                 <Text className="text-xl text-white font-sans">{planet.subtitle}</Text>
               </View>
