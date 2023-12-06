@@ -9,15 +9,16 @@ import {
   Image,
   ImageStyle,
 } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInLeft, FadeOutRight } from 'react-native-reanimated';
 import { PlanetList, PlanetType } from '../lib/data/planets';
 
 interface PlanetSliderProps {
-  searchFilter?: string;
+  planets: PlanetType[];
+  onPlanetPress?: (planet: PlanetType['name']) => void;
 }
 
 export default function PlanetSlider(props: PlanetSliderProps) {
-  const { searchFilter } = props;
+  const { planets, onPlanetPress } = props;
 
   const renderPlanetItem: ListRenderItem<PlanetType> = ({ item, index }) => {
     const DEBUG_LIST = false;
@@ -44,11 +45,16 @@ export default function PlanetSlider(props: PlanetSliderProps) {
 
     return (
       <Animated.View
-        entering={FadeIn.duration(500).delay(250 * index)}
+        entering={FadeInLeft.duration(500).delay(250 * index)}
+        exiting={FadeOutRight.duration(500)}
         className={`flex-col items-start relative overflow-visible pt-20 mr-6 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
-        <Link href={{ pathname: '/planet/[planet]', params: { planet: item.name } }}>
+        <Link
+          onPress={() => {
+            if (onPlanetPress) onPlanetPress(item.name);
+          }}
+          href={{ pathname: '/planet/[planet]', params: { planet: item.name } }}>
           <View>
             <Image
               source={item.image}
@@ -93,7 +99,7 @@ export default function PlanetSlider(props: PlanetSliderProps) {
 
   return (
     <FlatList
-      data={PlanetList}
+      data={planets}
       style={{ marginRight: -16 }}
       contentContainerStyle={{
         alignItems: 'flex-start',

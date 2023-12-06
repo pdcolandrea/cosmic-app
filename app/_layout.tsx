@@ -14,8 +14,9 @@ import {
   Rubik_700Bold,
 } from '@expo-google-fonts/dev';
 import { SplashScreen, Stack } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
+import { AppSettings } from '../lib/storage';
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -23,12 +24,26 @@ export const unstable_settings = {
 };
 
 function RootLayout() {
-  const hasOnboarded = true;
+  const [hasOnboarded, setHasOnboarded] = useState(false);
+
+  useEffect(() => {
+    AppSettings.getHasOnboarded().then((value) => {
+      console.log(`value: ${value}`);
+      setHasOnboarded(value);
+    });
+  }, []);
+
+  if (!hasOnboarded) {
+    return (
+      <Stack initialRouteName="onboarding">
+        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+      </Stack>
+    );
+  }
 
   return (
     <Stack initialRouteName="(tabs)">
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
       <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       <Stack.Screen name="planet" options={{ headerShown: false }} />
     </Stack>

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
-const NUM_STARS = 250;
+const NUM_STARS = 150;
 const NUM_LAYERS = 2; // Number of layers
 
 const starColors = [

@@ -14,6 +14,7 @@ import StarBackground from '../../components/star-background';
 import { useLikeStore } from '../../hooks/use-likes';
 import { PlanetList } from '../../lib/data/planets';
 import StarBackgroundSkia from '../../components/star-skia-background';
+import { SkiaNonLayedStarBackground } from '../../components/star-skia-background-standard';
 
 const IMG_HEIGHT = 300;
 const { width } = Dimensions.get('window');
@@ -71,7 +72,7 @@ export default function PlanetScreen() {
   };
 
   return (
-    <StarBackgroundSkia>
+    <SkiaNonLayedStarBackground>
       <View style={{ flex: 1 }}>
         <Animated.ScrollView
           contentContainerStyle={{ paddingBottom: 100 }}
@@ -113,7 +114,7 @@ export default function PlanetScreen() {
           </View>
         </Animated.ScrollView>
       </View>
-    </StarBackgroundSkia>
+    </SkiaNonLayedStarBackground>
   );
 }
 
