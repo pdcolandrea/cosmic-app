@@ -33,13 +33,13 @@ function RootLayout() {
     });
   }, []);
 
-  if (!hasOnboarded) {
-    return (
-      <Stack initialRouteName="onboarding">
-        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-      </Stack>
-    );
-  }
+  // if (!hasOnboarded) {
+  //   return (
+  //     <Stack initialRouteName="onboarding">
+  //       <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+  //     </Stack>
+  //   );
+  // }
 
   return (
     <Stack initialRouteName="(tabs)">

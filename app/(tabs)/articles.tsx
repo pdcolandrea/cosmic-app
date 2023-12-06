@@ -6,8 +6,6 @@ export default function TabTwoScreen() {
   return (
     <View className={styles.container}>
       <Text className={styles.title}>Tab Two</Text>
-      <View className={styles.separator} />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
     </View>
   );
 }

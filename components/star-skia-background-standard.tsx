@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import { Canvas, Circle, useValue, runTiming, Easing } from '@shopify/react-native-skia';
 
 const { width, height } = Dimensions.get('window');
-const NUM_STARS = 250;
+const NUM_STARS = 100;
 
 const starColors = [
   '#FFFFFF', // White (common color)
