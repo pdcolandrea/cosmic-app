@@ -19,6 +19,8 @@ import { SkiaNonLayedStarBackground } from '../../components/star-skia-backgroun
 const IMG_HEIGHT = 300;
 const { width } = Dimensions.get('window');
 
+// TODO: REFACTOR PARRALAX COMPONENT INTO OWN COMPONENT
+
 export default function PlanetScreen() {
   const { toggleLike, likes } = useLikeStore();
   const { setOptions, goBack } = useNavigation();
