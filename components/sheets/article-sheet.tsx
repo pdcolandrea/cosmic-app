@@ -1,5 +1,5 @@
-import { forwardRef, useMemo } from 'react';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { forwardRef, useCallback, useMemo } from 'react';
+import { BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
@@ -9,9 +9,23 @@ export const ArticleBottomSheet = forwardRef<BottomSheetModal, ArticleBottomShee
   (props, ref) => {
     const snapPoints = useMemo(() => ['25%', '95%'], []);
 
+    const renderBackdrop = useCallback(
+      (props) => (
+        <BottomSheetBackdrop
+          {...props}
+          appearsOnIndex={1}
+          animatedIndex={{
+            value: 1,
+          }}
+        />
+      ),
+      []
+    );
+
     return (
       <BottomSheetModal
         backgroundStyle={{ backgroundColor: '#1E1E1E' }}
+        backdropComponent={renderBackdrop}
         ref={ref}
         snapPoints={snapPoints}>
         <View style={{ flex: 1, paddingHorizontal: 24, paddingVertical: 12 }}>
