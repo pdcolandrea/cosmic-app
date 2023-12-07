@@ -92,4 +92,4 @@ Cosmic is built using [Expo], [React Native] and [TypeScript].
 
 ## License
 
-Linky is licensed under the terms of the MIT license.
+Cosmic is licensed under the terms of the MIT license.
