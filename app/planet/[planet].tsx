@@ -1,25 +1,17 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useLocalSearchParams } from 'expo-router';
 import { useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
-import Animated, {
-  interpolate,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollViewOffset,
-} from 'react-native-reanimated';
+import { View, Text, Pressable } from 'react-native';
+import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
 import { AnimatedHeartToggle } from '../../components/icons/animated-heart';
-import StarBackground from '../../components/star-background';
+import ParallaxModal from '../../components/parallax-modal';
+import { SkiaNonLayedStarBackground } from '../../components/star-skia-background-standard';
 import { useLikeStore } from '../../hooks/use-likes';
 import { PlanetList } from '../../lib/data/planets';
 import StarBackgroundSkia from '../../components/star-skia-background';
-import { SkiaNonLayedStarBackground } from '../../components/star-skia-background-standard';
 
 const IMG_HEIGHT = 300;
-const { width } = Dimensions.get('window');
-
-// TODO: REFACTOR PARRALAX COMPONENT INTO OWN COMPONENT
 
 export default function PlanetScreen() {
   const { toggleLike, likes } = useLikeStore();
@@ -28,7 +20,6 @@ export default function PlanetScreen() {
     planet: string;
   }>();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
-  const scrollOffset = useScrollViewOffset(scrollRef);
 
   const planet = PlanetList.find((p) => p.name === planetName);
   if (!planetName || !planet) throw new Error("Planet screen requires 'planet' param");
@@ -37,36 +28,12 @@ export default function PlanetScreen() {
 
   useLayoutEffect(() => {
     setOptions({
-      headerBackground: () => <Animated.View style={[headerAnimatedStyle, styles.header]} />,
       headerLeft: () => (
         <Pressable onPress={goBack}>
           <Ionicons name="ios-arrow-back-circle-outline" color="white" size={35} />
         </Pressable>
       ),
     });
-  }, []);
-
-  const imageAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateY: interpolate(
-            scrollOffset.value,
-            [-IMG_HEIGHT, 0, IMG_HEIGHT, IMG_HEIGHT],
-            [-IMG_HEIGHT / 2, 0, IMG_HEIGHT * 0.75]
-          ),
-        },
-        {
-          scale: interpolate(scrollOffset.value, [-IMG_HEIGHT, 0, IMG_HEIGHT], [2, 1, 1]),
-        },
-      ],
-    };
-  });
-
-  const headerAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1]),
-    };
   }, []);
 
   const onLikePressed = () => {
@@ -76,16 +43,7 @@ export default function PlanetScreen() {
   return (
     <SkiaNonLayedStarBackground>
       <View style={{ flex: 1 }}>
-        <Animated.ScrollView
-          contentContainerStyle={{ paddingBottom: 100 }}
-          ref={scrollRef}
-          scrollEventThrottle={16}
-          style={{ marginTop: 10 }}>
-          <Animated.Image
-            source={planet?.image}
-            style={[styles.image, imageAnimatedStyle]}
-            resizeMode="cover"
-          />
+        <ParallaxModal image={planet.image} imageHeight={300} animateHeader ref={scrollRef}>
           <View className="p-6 h-full bg-dark">
             <View className="flex-row items-center justify-between">
               <View>
@@ -114,18 +72,8 @@ export default function PlanetScreen() {
             <Text className="text-lg text-white my-4 font-sans">{planet.information}</Text>
             <Text className="text-[#787878] font-sans">By Daisy Stephenson | 02 May 2023</Text>
           </View>
-        </Animated.ScrollView>
+        </ParallaxModal>
       </View>
     </SkiaNonLayedStarBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#0F0E0F',
-    height: 100,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: 'gray',
-  },
-  image: { height: IMG_HEIGHT, width },
-});

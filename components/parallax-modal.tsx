@@ -1,5 +1,5 @@
 import { useNavigation } from 'expo-router';
-import { forwardRef, useLayoutEffect } from 'react';
+import { RefObject, forwardRef, useLayoutEffect } from 'react';
 import { View, Dimensions, ImageSourcePropType, StyleSheet } from 'react-native';
 import Animated, {
   interpolate,
@@ -17,9 +17,9 @@ interface ParallaxModalProps {
 const { width } = Dimensions.get('window');
 
 const ParallaxModal = forwardRef<Animated.ScrollView, ParallaxModalProps>((props, ref) => {
-  const { setOptions } = useNavigation();
   const { children, image, animateHeader = true, imageHeight = 300 } = props;
-  const scrollOffset = useScrollViewOffset(ref);
+  const { setOptions } = useNavigation();
+  const scrollOffset = useScrollViewOffset(ref as RefObject<Animated.ScrollView>);
 
   useLayoutEffect(() => {
     if (!animateHeader) return;
