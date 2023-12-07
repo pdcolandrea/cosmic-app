@@ -32,7 +32,7 @@ export default function TabOneScreen() {
   return (
     <SkiaNonLayedStarBackground>
       <View className="flex-1 p-4">
-        <StatusBar backgroundColor="red" />
+        <StatusBar style="inverted" />
         <View className="mt-12 mb-4 h-12 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
           <Ionicons name="search-sharp" color="white" size={22} style={{ marginTop: 5 }} />
           <TextInput

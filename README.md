@@ -13,7 +13,7 @@
 [Expo]: https://github.com/expo/expo
 
 <div align="center">
-<img src="https://i.imgur.com/Pw1VAe4.png" height="500" alt="cosmic">
+<img src="https://i.imgur.com/YDTjyBJ.png" alt="cosmic">
     <h3>Cosmic</h3>
 </div>
 <p align="center">
