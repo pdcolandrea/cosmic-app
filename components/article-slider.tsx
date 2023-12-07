@@ -1,4 +1,4 @@
-import { FlatList, Image, ListRenderItem, Text, View } from 'react-native';
+import { FlatList, Image, ListRenderItem, Pressable, Text, View } from 'react-native';
 
 const TEMP_ARTICLES = [
   {
@@ -10,7 +10,13 @@ const TEMP_ARTICLES = [
   },
 ] as const;
 
-export default function ArticleSlider() {
+interface ArticleSliderProps {
+  onArticlePressed: (id: number) => void;
+}
+
+export default function ArticleSlider(props: ArticleSliderProps) {
+  const { onArticlePressed } = props;
+
   const renderArticleItem: ListRenderItem<(typeof TEMP_ARTICLES)[number]> = ({ item }) => {
     return (
       <View className="flex-row bg-[#161616] h-36 w-[350px] rounded-xl">
@@ -31,9 +37,9 @@ export default function ArticleSlider() {
   };
 
   return (
-    <View className="">
+    <Pressable onPress={() => onArticlePressed(1)} className="">
       <Text className="text-lg text-white font-semibold mb-3">Articles</Text>
       <FlatList data={TEMP_ARTICLES} renderItem={renderArticleItem} horizontal />
-    </View>
+    </Pressable>
   );
 }

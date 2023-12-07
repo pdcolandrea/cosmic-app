@@ -17,6 +17,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { AppSettings } from '../lib/storage';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -42,11 +43,13 @@ function RootLayout() {
   // }
 
   return (
-    <Stack initialRouteName="(tabs)">
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      <Stack.Screen name="planet" options={{ headerShown: false }} />
-    </Stack>
+    <BottomSheetModalProvider>
+      <Stack initialRouteName="(tabs)">
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="planet" options={{ headerShown: false }} />
+      </Stack>
+    </BottomSheetModalProvider>
   );
 }
 
