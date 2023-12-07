@@ -1,11 +1,14 @@
 import { Text, View } from 'react-native';
 
-import EditScreenInfo from '../../components/edit-screen-info';
+import { useDailyFact } from '../../hooks/use-random-fact';
 
 export default function TabTwoScreen() {
+  const fact = useDailyFact();
+  console.log(fact);
+
   return (
     <View className={styles.container}>
-      <Text className={styles.title}>Tab Two</Text>
+      <Text className={styles.title}>{fact.fact}</Text>
     </View>
   );
 }
@@ -13,5 +16,5 @@ export default function TabTwoScreen() {
 const styles = {
   container: `items-center flex-1 justify-center`,
   separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
-  title: `text-xl font-bold`,
+  title: `text-xl font-bold text-center`,
 };

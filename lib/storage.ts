@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const KEYS = {
   onboard: 'HAS_ONBOARDED',
+  seenFactPrefix: 'RANDOM_FACT-',
 };
 
 export class AppSettings {
@@ -30,3 +31,21 @@ export class AppSettings {
     }
   }
 }
+
+export const getHasSeenFact = async (id: number) => {
+  const hasSeen = await AsyncStorage.getItem(`${KEYS.seenFactPrefix}${id}`);
+  if (hasSeen && hasSeen === 'true') {
+    return true;
+  }
+
+  return false;
+};
+
+export const markFactAsSeen = async (id: number) => {
+  try {
+    await AsyncStorage.setItem(`${KEYS.seenFactPrefix}${id}`, 'true');
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};
