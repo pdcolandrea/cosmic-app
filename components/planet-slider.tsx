@@ -9,8 +9,8 @@ import {
   Image,
   ImageStyle,
 } from 'react-native';
-import Animated, { FadeIn, FadeInLeft, FadeOutRight } from 'react-native-reanimated';
-import { PlanetList, PlanetType } from '../lib/data/planets';
+import Animated, { FadeInLeft, FadeOutRight } from 'react-native-reanimated';
+import { PlanetType } from '../lib/data/planets';
 
 interface PlanetSliderProps {
   planets: PlanetType[];
@@ -26,7 +26,7 @@ export default function PlanetSlider(props: PlanetSliderProps) {
       if (item.title === 'Saturn') {
         return {
           marginLeft: 20,
-          transform: [{ scale: 0.9 }],
+          transform: [{ scale: 0.83 }],
         };
       } else if (item.title === 'Uranus') {
         return {
@@ -47,7 +47,7 @@ export default function PlanetSlider(props: PlanetSliderProps) {
       <Animated.View
         entering={FadeInLeft.duration(500).delay(250 * index)}
         exiting={FadeOutRight.duration(500)}
-        className={`flex-col items-start relative overflow-visible pt-20 mr-6 ${
+        className={`flex-col items-start relative overflow-visible pt-[70px] mr-6 ${
           DEBUG_LIST && 'bg-red-500'
         }`}>
         <Link

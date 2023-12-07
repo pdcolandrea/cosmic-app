@@ -49,7 +49,7 @@ export default function CategorySlider(props: CategorySliderProps) {
     <FlatList
       data={TEMP_LABELS}
       renderItem={renderTabLabel}
-      style={{ flexGrow: 0, marginBottom: 24 }}
+      style={{ flexGrow: 0, marginBottom: 0 }}
       horizontal
     />
   );
