@@ -10,6 +10,7 @@
 [React Native Gesture Handler]: https://github.com/software-mansion/react-native-gesture-handler
 [React Native Skia]: https://github.com/Shopify/react-native-skia
 [Zustand]: https://github.com/pmndrs/zustand
+[Urvashi Kaushik]: https://www.figma.com/community/file/1239478379819513105
 [Expo]: https://github.com/expo/expo
 
 <div align="center">
@@ -85,6 +86,8 @@ Cosmic is built using [Expo], [React Native] and [TypeScript].
 - [NativeWind] - UI library
 - [Reanimated] & [React Native Gesture Handler] - For building interactive UIs
 - [React Native Skia] - Drawing background
+
+- 🎨 [Urvashi Kaushik] - For the Design
 
 ### Features
 
