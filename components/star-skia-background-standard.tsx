@@ -32,7 +32,7 @@ const animateStar = (posX, posY, maxDistance, movementDuration) => {
   runTiming(posX, newPosX, { duration: movementDuration, easing: Easing.linear });
   runTiming(posY, newPosY, { duration: movementDuration, easing: Easing.linear });
 
-  let timeout = setTimeout(
+  const timeout = setTimeout(
     () => animateStar(posX, posY, maxDistance, movementDuration),
     movementDuration
   );
