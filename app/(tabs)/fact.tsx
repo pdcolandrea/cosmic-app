@@ -22,7 +22,7 @@ export default function TabTwoScreen() {
 }
 
 const styles = {
-  container: `items-center flex-1 justify-center`,
+  container: `items-center flex-1 justify-center px-4`,
   separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
   title: `text-3xl font-sans font-bold text-center text-white`,
 };

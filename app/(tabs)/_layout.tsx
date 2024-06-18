@@ -44,7 +44,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="articles"
+        name="fact"
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="appstore-o" color={color} />,
         }}

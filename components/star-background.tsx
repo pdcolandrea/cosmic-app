@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
-const NUM_STARS = 500;
+const NUM_STARS = 250;
 
 const Star = memo(() => {
   const posX = useSharedValue(Math.random() * width);

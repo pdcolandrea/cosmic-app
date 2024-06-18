@@ -13,14 +13,12 @@
 [Expo]: https://github.com/expo/expo
 
 <div align="center">
-<img src="https://i.imgur.com/YDTjyBJ.png" alt="cosmic">
+<img src="https://i.imgur.com/4B9GlM2.png alt="cosmic">
     <h3>Cosmic</h3>
 </div>
 <p align="center">
   <em>
     A fun, interactive React-Native app for users to explore the galaxy, featuring daily space facts and a favorite system to bookmark intriguing planets and stars.
-    <br/><br/>
-    This project also served as an experiment to test animated star backgrounds using both [React Native Skia] and [Reanimated].
     <br/><br/>
     <b>In Development</b>
   </em>
@@ -47,6 +45,22 @@ Cosmic is an interactive React-Native app for exploring and learning about celes
 - **Interactive Galactic Map**: Navigate through the stars and planets with ease.
 - **Daily Space Facts**: Learn something new every day about the cosmos.
 - **Favorites Feature**: Save and revisit your favorite celestial objects.
+- **Animated Star Backgrounds**: Experience the galaxy with captivating animations powered by Skia and Reanimated.
+- **Articles**: View recent space articles (Harcoded)
+- **Profile**: View your profle (coming soon)
+
+## Star Implementation
+
+The potential performance issues noted in the animated components might be due to my own understanding of animation techniques rather than the capabilities of the packages themselves. For simpler or more performance-optimized alternatives, obviously, using a static star SVG background should be considered.
+
+- **Reanimated Star Background**: `components/star-background.tsx` uses [Reanimated] to create an animated starry sky. Note: This implementation showed poorer performance compared to Skia.
+- **Skia Animated Stars**: `components/star-skia-background.tsx` utilizes [React Native Skia] to produce a layered, animated star background with added depth and occasional shooting stars for enhanced visual impact. This implementation looks the best - by far. Performance..... not so much.
+- **Standard Skia Background**: `components/star-skia-background-standard.tsx` offers a simpler animated star background using [React Native Skia] without the layers for a more straightforward effect. This implementation has the best performance.
+
+<div align="center">
+<img src="https://i.imgur.com/GRmJ8o8.gif" alt="cosmic" style="height: 700px; width: auto;">
+<p>Preview of stars</p>
+</div>
 
 ## Getting Started
 
