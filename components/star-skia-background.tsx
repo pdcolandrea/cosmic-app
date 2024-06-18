@@ -1,11 +1,22 @@
-import { Canvas, Circle, Easing, Line, runTiming, useValue } from '@shopify/react-native-skia';
+import {
+  Canvas,
+  Circle,
+  Easing,
+  Line,
+  SkiaMutableValue,
+  runTiming,
+  useValue,
+} from '@shopify/react-native-skia';
 import React, { useEffect } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
+import { FullStar, Star } from '../types';
+
 const { width, height } = Dimensions.get('window');
+
+// config
 const NUM_STARS = 150;
 const NUM_LAYERS = 2; // Number of layers
-
 const starColors = [
   '#FFFFFF', // White (common color)
   '#FFFFFF',
@@ -22,9 +33,33 @@ const starColors = [
   '#FF9999', // Red (rarer color)
 ];
 
-const randomIncrement = (maxValue) => (Math.random() - 0.5) * 2 * maxValue;
+const randomIncrement = (maxValue: number) => (Math.random() - 0.5) * 2 * maxValue;
 
-const animateStar = (posX, posY, maxDistance, movementDuration) => {
+// Function to generate random stars for a given layer
+const generateStarsForLayer = (layerIndex: number): FullStar[] => {
+  return Array.from({ length: NUM_STARS / NUM_LAYERS }).map(() => {
+    const layerFactor = (layerIndex + 1) / NUM_LAYERS;
+    const color = starColors[Math.floor(Math.random() * starColors.length)];
+    const shape = Math.random() < 0.2 ? 'sparkling' : 'circle'; // 20% chance to be a sparkling star
+
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: (Math.random() * 3 + 1) * layerFactor,
+      opacity: (Math.random() * 0.5 + 0.5) * layerFactor,
+      layerFactor,
+      color,
+      shape,
+    };
+  });
+};
+
+const animateStar = (
+  posX: SkiaMutableValue<number>,
+  posY: SkiaMutableValue<number>,
+  maxDistance: number,
+  movementDuration: number
+) => {
   const newPosX = posX.current + randomIncrement(maxDistance);
   const newPosY = posY.current + randomIncrement(maxDistance);
 
@@ -34,7 +69,13 @@ const animateStar = (posX, posY, maxDistance, movementDuration) => {
   setTimeout(() => animateStar(posX, posY, maxDistance, movementDuration), movementDuration);
 };
 
-const animateOpacity = (opacity, start, end, duration, onComplete) => {
+const animateOpacity = (
+  opacity: SkiaMutableValue<number>,
+  start: number,
+  end: number,
+  duration: number,
+  onComplete: () => void
+) => {
   runTiming(
     opacity,
     end,
@@ -48,7 +89,7 @@ const animateOpacity = (opacity, start, end, duration, onComplete) => {
   );
 };
 
-const SparklingStar = ({ x, y, size, color, opacity }) => {
+const SparklingStar = ({ x, y, size, color, opacity }: Star) => {
   const numLines = 2 + Math.floor(Math.random() * 3); // 2 to 4 lines for variation
   const lines = [];
 
@@ -76,7 +117,7 @@ const SparklingStar = ({ x, y, size, color, opacity }) => {
   ));
 };
 
-const LayeredStar = ({ star }) => {
+const LayeredStar = ({ star }: { star: FullStar }) => {
   const posX = useValue(star.x);
   const posY = useValue(star.y);
   const opacity = useValue(star.opacity);
@@ -110,6 +151,7 @@ const LayeredStar = ({ star }) => {
         y={posY.current}
         size={star.size}
         color={star.color}
+        // @ts-ignore losing type; debug later
         opacity={star.opacity.current}
       />
     );
@@ -118,29 +160,11 @@ const LayeredStar = ({ star }) => {
   return <Circle cx={posX} cy={posY} r={size / 2} color={star.color} opacity={opacity} />;
 };
 
-// Function to generate random stars for a given layer
-const generateStarsForLayer = (layerIndex) => {
-  return Array.from({ length: NUM_STARS / NUM_LAYERS }).map(() => {
-    const layerFactor = (layerIndex + 1) / NUM_LAYERS;
-    const color = starColors[Math.floor(Math.random() * starColors.length)];
-    const shape = Math.random() < 0.2 ? 'sparkling' : 'circle'; // 20% chance to be a sparkling star
-
-    return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: (Math.random() * 3 + 1) * layerFactor,
-      opacity: (Math.random() * 0.5 + 0.5) * layerFactor,
-      layerFactor,
-      color,
-      shape,
-    };
-  });
-};
-
 // Creating stars for each layer
 const layers = Array.from({ length: NUM_LAYERS }).map((_, index) => generateStarsForLayer(index));
 
-const StarBackgroundSkia = ({ children }) => {
+// layered stars with depth; twinkling, various shapes, no movement
+const StarBackgroundSkia = ({ children }: { children: React.ReactNode }) => {
   return (
     <View style={styles.container}>
       <Canvas style={styles.canvas}>

@@ -1,7 +1,6 @@
 [App Store]: https://apple.co/458U0ul
 [React Native]: https://github.com/facebook/react-native
 [TypeScript]: https://github.com/microsoft/TypeScript
-[CodePush]: https://github.com/microsoft/react-native-code-push
 [React Navigation]: https://github.com/react-navigation/react-navigation
 [i18next]: https://github.com/i18next/react-i18next
 [NativeWind]: https://github.com/marklawlor/nativewind
@@ -20,6 +19,8 @@
 <p align="center">
   <em>
     A fun, interactive React-Native app for users to explore the galaxy, featuring daily space facts and a favorite system to bookmark intriguing planets and stars.
+    <br/><br/>
+    This project also served as an experiment to test animated star backgrounds using both [React Native Skia] and [Reanimated].
     <br/><br/>
     <b>In Development</b>
   </em>

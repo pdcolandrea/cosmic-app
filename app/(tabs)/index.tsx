@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { LayoutAnimation, TextInput, View } from 'react-native';
@@ -6,12 +7,9 @@ import { LayoutAnimation, TextInput, View } from 'react-native';
 import ArticleSlider from '../../components/article-slider';
 import CategorySlider, { FilterType } from '../../components/category-slider';
 import PlanetSlider from '../../components/planet-slider';
-import StarBackground from '../../components/star-background';
-import StarBackgroundSkia from '../../components/star-skia-background';
-import { PlanetList } from '../../lib/data/planets';
-import { SkiaNonLayedStarBackground } from '../../components/star-skia-background-standard';
 import { ArticleBottomSheet } from '../../components/sheets/article-sheet';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { SkiaNonLayeredStarBackground } from '../../components/star-skia-background-standard';
+import { PlanetList } from '../../lib/data/planets';
 
 export default function TabOneScreen() {
   const [searchFilter, setSearchFilter] = useState('');
@@ -38,7 +36,7 @@ export default function TabOneScreen() {
 
   return (
     <>
-      <SkiaNonLayedStarBackground>
+      <SkiaNonLayeredStarBackground>
         <View className="flex-1 p-4">
           <StatusBar style="inverted" />
           <View className="mt-12 mb-4 h-12 mx-auto items-center w-full rounded-xl bg-[#161616] flex-row px-4">
@@ -63,7 +61,7 @@ export default function TabOneScreen() {
           />
           <ArticleSlider onArticlePressed={onArticlePressed} />
         </View>
-      </SkiaNonLayedStarBackground>
+      </SkiaNonLayeredStarBackground>
       <ArticleBottomSheet ref={articleRef} />
     </>
   );

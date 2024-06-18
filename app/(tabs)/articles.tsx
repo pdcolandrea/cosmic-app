@@ -1,14 +1,14 @@
 import { Text, View } from 'react-native';
-
-import { useDailyFact } from '../../hooks/use-random-fact';
-import { SkiaNonLayedStarBackground } from '../../components/star-skia-background-standard';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+
+import { SkiaNonLayeredStarBackground } from '../../components/star-skia-background-standard';
+import { useDailyFact } from '../../hooks/use-random-fact';
 
 export default function TabTwoScreen() {
   const fact = useDailyFact();
 
   return (
-    <SkiaNonLayedStarBackground>
+    <SkiaNonLayeredStarBackground>
       <View className={styles.container}>
         <Text style={{ fontFamily: 'Rubik_700Bold' }} className="text-3xl text-white">
           Did you know...
@@ -17,7 +17,7 @@ export default function TabTwoScreen() {
           {fact.fact.replace('Did you know', '')}
         </Animated.Text>
       </View>
-    </SkiaNonLayedStarBackground>
+    </SkiaNonLayeredStarBackground>
   );
 }
 

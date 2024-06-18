@@ -1,13 +1,15 @@
 import { Dimensions, Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+
 import StarBackground from '../components/star-background';
 import { AppSettings } from '../lib/storage';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default function OnboardScreen() {
   const onGetStartedPressed = async () => {
     await AppSettings.setHasOnboarded(true);
   };
+
   return (
     <StarBackground>
       <SafeAreaView>
@@ -34,6 +36,7 @@ export default function OnboardScreen() {
 
           position: 'relative',
         }}>
+        {/* Setup to overlap planets */}
         <Image
           source={require('../assets/planets/Mars.png')}
           style={{ width: 250, height: 250, position: 'absolute', top: 0, left: -100 }}

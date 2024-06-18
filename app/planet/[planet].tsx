@@ -6,7 +6,7 @@ import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
 import { AnimatedHeartToggle } from '../../components/icons/animated-heart';
 import ParallaxModal from '../../components/parallax-modal';
-import { SkiaNonLayedStarBackground } from '../../components/star-skia-background-standard';
+import { SkiaNonLayeredStarBackground } from '../../components/star-skia-background-standard';
 import { useLikeStore } from '../../hooks/use-likes';
 import { PlanetList } from '../../lib/data/planets';
 import StarBackgroundSkia from '../../components/star-skia-background';
@@ -41,7 +41,7 @@ export default function PlanetScreen() {
   };
 
   return (
-    <SkiaNonLayedStarBackground>
+    <SkiaNonLayeredStarBackground>
       <View style={{ flex: 1 }}>
         <ParallaxModal image={planet.image} imageHeight={300} animateHeader ref={scrollRef}>
           <View className="p-6 h-full bg-dark">
@@ -74,6 +74,6 @@ export default function PlanetScreen() {
           </View>
         </ParallaxModal>
       </View>
-    </SkiaNonLayedStarBackground>
+    </SkiaNonLayeredStarBackground>
   );
 }

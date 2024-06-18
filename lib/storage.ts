@@ -5,6 +5,8 @@ const KEYS = {
   seenFactPrefix: 'RANDOM_FACT-',
 };
 
+// so sorry about this
+// TODO: Remove this class mess
 export class AppSettings {
   protected static async getWrapper<T>(key: string, fallback: T): Promise<T | string> {
     try {

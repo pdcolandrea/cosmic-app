@@ -1,6 +1,13 @@
+import {
+  Canvas,
+  Circle,
+  useValue,
+  runTiming,
+  Easing,
+  type SkiaMutableValue,
+} from '@shopify/react-native-skia';
 import React, { memo, useEffect } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { Canvas, Circle, useValue, runTiming, Easing } from '@shopify/react-native-skia';
 
 const { width, height } = Dimensions.get('window');
 const NUM_STARS = 100;
@@ -21,11 +28,16 @@ const starColors = [
   '#FF9999', // Red (rarer color)
 ];
 
-const randomIncrement = (maxValue) => {
+const randomIncrement = (maxValue: number) => {
   return (Math.random() - 0.5) * 2 * maxValue;
 };
 
-const animateStar = (posX, posY, maxDistance, movementDuration) => {
+const animateStar = (
+  posX: SkiaMutableValue<number>,
+  posY: SkiaMutableValue<number>,
+  maxDistance: number,
+  movementDuration: number
+) => {
   const newPosX = posX.current + randomIncrement(maxDistance);
   const newPosY = posY.current + randomIncrement(maxDistance);
 
@@ -40,7 +52,13 @@ const animateStar = (posX, posY, maxDistance, movementDuration) => {
   return () => clearTimeout(timeout);
 };
 
-const animateOpacity = (opacity, start, end, duration, onComplete) => {
+const animateOpacity = (
+  opacity: SkiaMutableValue<number>,
+  start: number,
+  end: number,
+  duration: number,
+  onComplete: () => void
+) => {
   runTiming(
     opacity,
     end,
@@ -65,6 +83,7 @@ const Star = memo(() => {
     const maxDistance = 20; // Max distance a star can move in any direction
     const movementDuration = 8000 + Math.random() * 4000; // Increased duration for slower movement
 
+    // start movement of star
     animateStar(posX, posY, maxDistance, movementDuration);
 
     // Twinkling effect
@@ -88,7 +107,8 @@ const Star = memo(() => {
 
 const stars = Array.from({ length: NUM_STARS });
 
-export const SkiaNonLayedStarBackground = ({ children }) => {
+// increased performance, stars have no depth
+export const SkiaNonLayeredStarBackground = ({ children }: { children: React.ReactNode }) => {
   return (
     <View style={styles.container}>
       <Canvas style={styles.canvas}>
